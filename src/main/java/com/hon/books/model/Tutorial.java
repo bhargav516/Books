@@ -70,4 +70,26 @@ public class Tutorial {
                 ", published=" + published +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tutorial tutorial = (Tutorial) o;
+
+        if (id != tutorial.id) return false;
+        if (published != tutorial.published) return false;
+        if (title != null ? !title.equals(tutorial.title) : tutorial.title != null) return false;
+        return description != null ? description.equals(tutorial.description) : tutorial.description == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (published ? 1 : 0);
+        return result;
+    }
 }
